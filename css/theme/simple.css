@@ -132,3 +132,11 @@ body {
  *********************************************/
 .reveal .slide-number {
   color: darkblue; }
+
+/* Author detaisl */
+h3.author {
+  display: inline;
+  vertical-align: top;
+  font-size: 36pt;
+  margin: 0 10px 0 10px;
+}
