@@ -40,11 +40,13 @@ body {
   font-family: "News Cycle", Impact, sans-serif;
   line-height: 0.9em;
   letter-spacing: 0.02em;
-  text-transform: none;
+  text-transform: uppercase;
   text-shadow: none; }
 
 .reveal h1 {
-  text-shadow: 0px 0px 6px rgba(0, 0, 0, 0.2); }
+  text-shadow: 0px 0px 6px rgba(0, 0, 0, 0.2);
+  font-size: 80pt;
+}
 
 /*********************************************
  * LINKS
