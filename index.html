@@ -38,7 +38,12 @@ document.write( '<link rel="stylesheet" href="css/print/' + ( window.location.se
 <!-- Any section element inside of this container is displayed as a slide -->
 <div class="slides">
 <section>
-<img src="img/fakeslide1.png" alt="Fake slide 1"/>
+<section>
+<img src="img/fakeslide0.png">
+</section>
+<section>
+<img src="img/fakeslide1.png">
+</section>
 </section>
 <section>
 <h1>Here's something cool you can do with HMMs</h1>
@@ -70,6 +75,328 @@ with (relatively) simple machine learning and hacks</p>
 </p>
 </script>
 </section>
+<section>
+<section>
+<h1>Hello Austin ML</h1>
+</section>
+<section>
+<h2>What this talk is about</h2>
+<ul>
+<li>Unsupervised parsing = considered a pretty hard problem
+<li>We achieved new state-of-the-art-results mostly by hacking
+<li>With a little ML (which is why I'm here)
+</ul>
+</section>
+<section>
+<h2>What you'll learn</h2>
+<ul>
+<li>A little about HMMs
+<li>Strong baselines are hard to beat
+<li>Don't stop hacking
+</ul>
+</section>
+</section>
+</section>
+<section>
+<h3>Hidden Markov models</h3>
+<img src="img/Hmm_temporal_bayesian_net.svg">
+<p>
+</section>
+<section>
+<section>
+<img src="img/parse_example.png">
+</section>
+<section>
+<h2>What? Why?</h2>
+<img height=600 src="img/motivation.png">
+</section>
+<section>
+<h1>Science.</h1>
+</section>
+</section>
+<section>
+<h3>Constituent Context Model</h3>
+<img src="img/ccm.png">
+<h4>Klein &amp; Manning 2002</h4>
+</section>
+<section>
+<section>
+<h2>Assumptions</h2>
+<h4>(here's where the bodies are buried)</h4>
+</section>
+<section>
+<img src="img/tree_node_labels.png">
+</section>
+<section>
+<img src="img/structure_only_task.png">
+</section>
+<section>
+<img src="img/pos_vs_raw_text.png">
+</section>
+</section>
+<!-- Seginer CCL -->
+<section>
+<section>
+<h2>The Competition</h2>
+</section>
+<section>
+<img src="img/seginer_2007.png">
+</section>
+<section>
+<img src="img/ccl_example.png">
+</section>
+<section>
+<img src="img/ccl_results.png">
+</section>
+</section>
+<section>
+<h3>Datasets for evaluation</h3>
+<img src="img/datasets1.png">
+</section>
+<section>
+<section>
+<h3>What CCL Parser was getting right</h3>
+<img src="img/ccl_clumps1.png">
+</section>
+<section>
+<h4>So we created a new evaluation</h4>
+<h2>Clumping</h2>
+<div style="white-space: nowrap;">
+<img width=500 style="vertical-align: bottom;" src="img/clumping2.png">
+<img width=500 style="vertical-align: bottom;" src="img/clumping3.png">
+</div>
+</section>
+<section>
+<h2>Worst. Name. Ever.</h2>
+</section>
+<section>
+<h3>Anyway, we found CCL Parser did great at this evaluation</h3>
+<table width=800 style="margin-left: 100px;">
+<thead>
+<tr>
+<th></th>
+<th>Overall precision</th>
+<th>Clumps precision</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<th>WSJ</th>
+<td>53.9</td>
+<td>65.4</td>
+</tr>
+<tr>
+<th>Negra</th>
+<td>33.4</td>
+<td>38.3</td>
+</tr>
+<tr>
+<th>CTB</th>
+<td>38.6</td>
+<td>31.5</td>
+</tr>
+</tbody>
+</table>
+</section>
+<section>
+<h2>A new baseline</h2>
+<p>Right-branching trees, except for the clumps
+<p>
+<img src="img/clumping_baseline.png">
+</section>
+<section>
+<img src="img/clump_parseval.png">
+</section>
+<section>
+<h2>Our first approach</h2>
+<img src="img/simple_chunk_formula.png">
+<h2>Simplest. Model. Ever.</h2>
+</section>
+<section>
+<h2>It sorta worked</h2>
+<img src="img/clump_bg_eval.png">
+</section>
+</section>
+<section>
+<h2>Quick Recap</h2>
+<ul>
+<li>Unsupervised parsing is considered kinda hard
+<li>The vast majority of approaches curiously assume gold standard POS
+<li>CCL Parser does not, and performed well
+<li>But we discovered it's real strength was in predicting low level constituents
+<li>Which we inexcusably named "clumps"
+</ul>
+<br>
+<br>
+<h5>Back to the HMMs</h5>
+</section>
+<section>
+<section>
+<h1>Unsupervised Partial Parsing</h1>
+<h4>The same thing with a cooler name</h4>
+</section>
+<section>
+<img src="img/constituent_chunks_ex.png">
+</section>
+<section>
+<img src="img/base_nps_ex.png">
+</section>
+<section>
+<img src="img/chunks_nps_in_data.png">
+</section>
+</section>
+<section>
+<section>
+<h1>Chunking as a tagging problem</h1>
+</section>
+<section>
+<img src="img/chunk_tags.png">
+</section>
+<section>
+<img src="img/chunks_tag_ends.png">
+</section>
+<section>
+<img src="img/chunking_with_punc.png">
+</section>
+</section>
+<section>
+<section>
+<h2>Learning Partial Parsing</h2>
+</section>
+<section>
+<img src="img/learn1.png">
+</section>
+<section>
+<img src="img/learn2.png">
+</section>
+<section>
+<img src="img/learn3.png">
+</section>
+<section>
+<img src="img/learn4.png">
+</section>
+<section>
+<img src="img/learn5.png">
+</section>
+<section>
+<img src="img/learn6.png">
+</section>
+<section>
+<img src="img/learn7.png">
+</section>
+</section>
+<section>
+<section>
+<h2>Here's the models</h2>
+</section>
+<section>
+<img src="img/models.png">
+</section>
+<section>
+<h3>Constraints</h3>
+<img src="img/constraints.png">
+</section>
+</section>
+<section>
+<section>
+<h1>Evaluation</h1>
+</section>
+<section>
+<img src="img/eval_rules.png">
+</section>
+<section>
+<img src="img/chunking_eval.png">
+</section>
+<section>
+<img src="img/nps_eval.png">
+</section>
+<section>
+<img src="img/prgl_example_output.png">
+</section>
+</section>
+<section>
+<section>
+<h1>How to predict trees</h1>
+
+<br><br>
+Hint: it's a hack
+</section>
+<section>
+<img src="img/trees1.png">
+</section>
+<section>
+<img src="img/trees2.png">
+</section>
+<section>
+<img src="img/trees3.png">
+</section>
+<section>
+<img src="img/trees4.png">
+</section>
+<section>
+<img src="img/trees5.png">
+</section>
+<section>
+<img src="img/trees_rules.png">
+</section>
+</section>
+<section>
+<section>
+<h1>Evaluation</h1>
+</section>
+<section>
+<h4>Full length sentences</h4>
+<img src="img/parsing_eval.png">
+</section>
+<section>
+<h4>&lt;10 Word Sentences</h4>
+<img src="img/parse_eval_10.png">
+</section>
+<section>
+<img src="img/err1.png">
+</section>
+<section>
+<img src="img/err2.png">
+</section>
+<section>
+<img src="img/err3.png">
+</section>
+</section>
+<section>
+<img height=500 src="img/future_directions.png">
+<h4>Yeah, I didn't do any of that stuff</h4>
+</section>
+<section>
+<section>
+<h1>Still the best</h1>
+</section>
+<section>
+<img src="img/spitkovsky.png">
+</section>
+<section>
+<img height=200 src="img/bragging.png"><br>
+<img height=400 src="img/boom.png">
+</section>
+</section>
+<section>
+<h3><a href="http://elias.ponvert.net/UPP.html">Lots more details</a></h3>
+
+<br><br>
+
+<h1>THANKS</h1>
+
+<h4>Questions?</h4>
+<!-- Maybe some numbers -->
+<!-- But, wait! what is actually going on with this model? -->
+<!-- So what if we do low-level constituency prediction directly instead -->
+<!-- Back to the HMMs -->
+<!-- Also a variation of HMMs -->
+<!-- So how do you evaluate these guys? -->
+<!-- Results -->
+<!-- The parsing -->
+<!-- Evaluation & results for the parsing -->
+<!-- Still the best -->
+<!-- Historical note -->
 </div>
 </div>
 <script src="lib/js/head.min.js"></script>
